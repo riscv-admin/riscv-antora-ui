@@ -47,7 +47,7 @@
   --code-link-font-color: var(--link-font-color);
   --scrollbar-thumb-color: silver;
   --scrollbar_hover-thumb-color: silver;
-  --mark-background-color: #80ea6e;
+  --mark-background-color: #fdb515;
   --selected-background-color: #191e1e;
   --caption-font-style: italic;
 
@@ -80,11 +80,11 @@
   --highlight-meta-font-color: #6a737d;
   --highlight-constant-font-color: #032f62;
   --highlight-variable-font-color: #005cc5;
-  --highlight-tag-font-color: #22863a;
+  --highlight-tag-font-color: #fdb515;
   --highlight-tag-attribute-font-color: #6f42c1;
   --highlight-type-font-color: #6f42c1;
   --highlight-link-font-color: var(--link-font-color);
-  --highlight-addition-font-color: #22863a;
+  --highlight-addition-font-color: #fdb515;
   --highlight-deletion-font-color: #24292e;
   --highlight-regex-font-color: #032f62;
 
@@ -269,7 +269,7 @@ html.dark-theme {
   --link-font-color: #086dc3;
   --link_hover-font-color: #107ddd;
   --scrollbar-thumb-color: #5f5f5f;
-  --mark-background-color: #2eca12;
+  --mark-background-color: #fdb515;
   --selected-background-color: #e5e5e5;
 
   /* Admonitions */
@@ -290,11 +290,11 @@ html.dark-theme {
   --highlight-meta-font-color: #959da5;
   --highlight-constant-font-color: #79b8ff;
   --highlight-variable-font-color: #c8e1ff;
-  --highlight-tag-font-color: #7bcc72;
+  --highlight-tag-font-color: #fdb515;
   --highlight-tag-attribute-font-color: #b392f0;
   --highlight-type-font-color: #b392f0;
   --highlight-link-font-color: #1565c0;
-  --highlight-addition-font-color: #7bcc72;
+  --highlight-addition-font-color: #fdb515;
   --highlight-deletion-font-color: #f6f8fa;
   --highlight-regex-font-color: #79b8ff;
 
