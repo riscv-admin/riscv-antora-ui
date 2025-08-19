@@ -38,7 +38,7 @@
   --color-accent-1: #ebf2f2;
   --color-accent-1-hover: #d3dddd;
   --color-accent-2: #d7e7e7;
-  --color-accent-3: #FDB515;
+  --color-accent-3: #6db33f;
   --body-font-color: #191e1e;
   --body-font-light-color: #273030;
   --body-font-dark-color: #141818;
@@ -262,7 +262,7 @@ html.dark-theme {
   --color-accent-1: #272c33;
   --color-accent-1-hover: #434d5c;
   --color-accent-2: #2d333a;
-  --color-accent-3: #FDB515;
+  --color-accent-3: #6db33f;
   --body-font-color: #bbbcbe;
   --body-font-light-color: #abacaf;
   --body-font-dark-color: #cecfd1;
