@@ -53,7 +53,7 @@
           GitHub Project
         </a>
       {{/if}}
-
+      {{#if page.attributes.pdf-url}}
       <a href="{{page.attributes.pdf-url}}" title="PDF">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -69,6 +69,7 @@
               ></path></g></svg>
           Download PDF
         </a>
+        {{/if}}
     </div>
   </div>
 </aside>
