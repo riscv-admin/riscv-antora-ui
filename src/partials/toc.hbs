@@ -53,23 +53,129 @@
           GitHub Project
         </a>
       {{/if}}
-      {{#if page.attributes.pdf-url}}
-      <a href="{{page.attributes.pdf-url}}" title="PDF">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="512px"
-            id="Layer_1"
-            version="1.1"
-            viewBox="0 0 512 512"
-            width="512px"
-          ><style type="text/css"><
-              .st0{fill-rule:evenodd;clip-rule:evenodd;} ]]></style><g><path
-                class="st0"
-                d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"
-              ></path></g></svg>
-          Download PDF
-        </a>
-        {{/if}}
+      {{#if page.attributes.multiple-pdfs}}
+          <div class="dropdown">
+            <button id="pdfDropdownButton" aria-haspopup="true" aria-expanded="false" class="dropdown-button">
+             Download PDFs
+            <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+           </button>
+
+            <ul id="pdfDropdownMenu" class="dropdown-menu" hidden>
+              {{#each page.attributes.pdf-list}}
+                <li><a href="{{url}}" class="dropdown-item" target="_blank" rel="noopener noreferrer">{{text}}</a></li>
+              {{/each}}
+            </ul>
+          </div>
+          <script>
+           (function() {
+              const btn = document.getElementById('pdfDropdownButton');
+              const menu = document.getElementById('pdfDropdownMenu');
+
+              btn.addEventListener('click', () => {
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+                btn.setAttribute('aria-expanded', !expanded);
+                menu.hidden = expanded;
+              });
+
+              document.addEventListener('click', e => {
+                if (!btn.contains(e.target) && !menu.contains(e.target)) {
+                  btn.setAttribute('aria-expanded', 'false');
+                  menu.hidden = true;
+                }
+              });
+            })();
+           </script>
+
+              <style>
+                .dropdown {
+                  position: relative;
+                  display: inline-block;
+                  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                  font-size: 14px;
+                }
+
+                .dropdown-button {
+                  background-color: #0069d6; /* Spring blue */
+                  color: white;
+                  border: none;
+                  padding: 8px 16px;
+                  border-radius: 4px;
+                  cursor: pointer;
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 6px;
+                  font-weight: 600;
+                  user-select: none;
+                }
+
+                .dropdown-button:hover,
+                .dropdown-button:focus {
+                  background-color: #0053b3;
+                  outline: none;
+                }
+
+                .chevron {
+                  stroke-width: 2.5;
+                  transition: transform 0.2s ease;
+                }
+
+                .dropdown-button[aria-expanded="true"] .chevron {
+                  transform: rotate(180deg);
+                }
+
+                .dropdown-menu {
+                  position: absolute;
+                  top: 100%;
+                  left: 0;
+                  margin-top: 6px;
+                  background: white;
+                  border: 1px solid #ddd;
+                  border-radius: 4px;
+                  box-shadow: 0 3px 7px rgb(0 0 0 / 0.1);
+                  min-width: 180px;
+                  padding: 4px 0;
+                  z-index: 1000;
+                }
+
+                .dropdown-item {
+                  display: block;
+                  padding: 8px 16px;
+                  color: #24292e;
+                  text-decoration: none;
+                  white-space: nowrap;
+                  user-select: none;
+                }
+
+                .dropdown-item:hover,
+                .dropdown-item:focus {
+                  background-color: #f3f4f6; /* light gray */
+                  outline: none;
+                }
+              </style>
+
+                {{else}}
+                   {{#if page.attributes.pdf-url}}
+                  <a href="{{page.attributes.pdf-url}}" target="_blank" rel="noopener noreferrer" title="PDF">
+                      <svg xmlns="http://www.w3.org/2000/svg" 
+                        width="16" 
+                        height="16" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path d="M10 14a5 5 0 0 1 7.07 0l3.54 3.54a5 5 0 0 1-7.07 7.07l-3.54-3.54a5 5 0 0 1 0-7.07z"/>
+                        <line x1="8" y1="8" x2="16" y2="16"/>
+                        </svg>
+                      Download PDF
+                    </a>
+                    {{else}}
+                   <div></div>
+                   {{/if}}
+                {{/if}}
+      
     </div>
   </div>
 </aside>
