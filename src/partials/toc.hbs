@@ -53,128 +53,86 @@
           GitHub Project
         </a>
       {{/if}}
-      {{#if page.attributes.multiple-pdfs}}
-          <div class="dropdown">
-            <button id="pdfDropdownButton" aria-haspopup="true" aria-expanded="false" class="dropdown-button">
-             Download PDFs
-            <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="6 9 12 15 18 9"></polyline>
+
+      {{#if page.attributes.multiple_pdfs}}
+        <div class="dropdown">
+          <a href="#" id="pdfDropdownButton" aria-haspopup="true" aria-expanded="false" class="sidebar-link">
+            <span>Download PDFs</span>
+            <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
-           </button>
-
-            <ul id="pdfDropdownMenu" class="dropdown-menu" hidden>
-              {{#each page.attributes.pdf-list}}
-                <li><a href="{{url}}" class="dropdown-item" target="_blank" rel="noopener noreferrer">{{text}}</a></li>
-              {{/each}}
-            </ul>
-          </div>
-          <script>
-           (function() {
-              const btn = document.getElementById('pdfDropdownButton');
-              const menu = document.getElementById('pdfDropdownMenu');
-
-              btn.addEventListener('click', () => {
-                const expanded = btn.getAttribute('aria-expanded') === 'true';
-                btn.setAttribute('aria-expanded', !expanded);
-                menu.hidden = expanded;
-              });
-
-              document.addEventListener('click', e => {
-                if (!btn.contains(e.target) && !menu.contains(e.target)) {
-                  btn.setAttribute('aria-expanded', 'false');
-                  menu.hidden = true;
-                }
-              });
-            })();
-           </script>
-
-              <style>
-                .dropdown {
-                  position: relative;
-                  display: inline-block;
-                  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-                  font-size: 14px;
-                }
-
-                .dropdown-button {
-                  background-color: #0069d6; /* Spring blue */
-                  color: white;
-                  border: none;
-                  padding: 8px 16px;
-                  border-radius: 4px;
-                  cursor: pointer;
-                  display: inline-flex;
-                  align-items: center;
-                  gap: 6px;
-                  font-weight: 600;
-                  user-select: none;
-                }
-
-                .dropdown-button:hover,
-                .dropdown-button:focus {
-                  background-color: #0053b3;
-                  outline: none;
-                }
-
-                .chevron {
-                  stroke-width: 2.5;
-                  transition: transform 0.2s ease;
-                }
-
-                .dropdown-button[aria-expanded="true"] .chevron {
-                  transform: rotate(180deg);
-                }
-
-                .dropdown-menu {
-                  position: absolute;
-                  top: 100%;
-                  left: 0;
-                  margin-top: 6px;
-                  background: white;
-                  border: 1px solid #ddd;
-                  border-radius: 4px;
-                  box-shadow: 0 3px 7px rgb(0 0 0 / 0.1);
-                  min-width: 180px;
-                  padding: 4px 0;
-                  z-index: 1000;
-                }
-
-                .dropdown-item {
-                  display: block;
-                  padding: 8px 16px;
-                  color: #24292e;
-                  text-decoration: none;
-                  white-space: nowrap;
-                  user-select: none;
-                }
-
-                .dropdown-item:hover,
-                .dropdown-item:focus {
-                  background-color: #f3f4f6; /* light gray */
-                  outline: none;
-                }
-              </style>
-
-                {{else}}
-                   {{#if page.attributes.pdf-url}}
-                  <a href="{{page.attributes.pdf-url}}" target="_blank" rel="noopener noreferrer" title="PDF">
-                      <svg xmlns="http://www.w3.org/2000/svg" 
-                        width="16" 
-                        height="16" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        stroke-width="2" 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                      <path d="M10 14a5 5 0 0 1 7.07 0l3.54 3.54a5 5 0 0 1-7.07 7.07l-3.54-3.54a5 5 0 0 1 0-7.07z"/>
-                        <line x1="8" y1="8" x2="16" y2="16"/>
-                        </svg>
-                      Download PDF
-                    </a>
-                    {{else}}
-                   <div></div>
-                   {{/if}}
-                {{/if}}
+          </a>
+          <ul id="pdfDropdownMenu" class="dropdown-menu" hidden>
+            {{#each page.attributes.pdf_list}}
+              <li style="padding-left: 0px;"><a href="{{url}}" class="dropdown-item" target="_blank" rel="noopener noreferrer" style="color: #000000; padding-left: 0;">{{text}}</a></li>
+            {{/each}}
+          </ul>
+        </div>
+        <script>
+          (function() {
+            const btn = document.getElementById('pdfDropdownButton');
+            const menu = document.getElementById('pdfDropdownMenu');
+            btn.addEventListener('click', function(e) {
+              e.preventDefault();
+              const expanded = btn.getAttribute('aria-expanded') === 'true';
+              btn.setAttribute('aria-expanded', !expanded);
+              menu.hidden = expanded;
+            });
+            document.addEventListener('click', function(e) {
+              if (!btn.contains(e.target) && !menu.contains(e.target)) {
+                btn.setAttribute('aria-expanded', 'false');
+                menu.hidden = true;
+              }
+            });
+          })();
+        </script>
+        <style>
+          .dropdown-menu {
+            position: absolute;
+            left: 0;
+            background: #FDB515;
+            border: 1px solid #000000;
+            border-radius: 4px;
+            min-width: 180px;
+            z-index: 1000;
+            list-style-type: none;
+          }
+          .dropdown-item {
+            padding-left: 0px;
+            display: block;
+            color: #000000;
+            text-decoration: none;
+            white-space: nowrap;
+            user-select: none;
+          }
+          .dropdown-item:hover{
+            background-color: #003262;
+            outline: none;
+            color: white;
+          }
+          .dropdown-item:focus {
+            background-color: #003262;
+            outline: none;
+          }
+          .chevron {
+            stroke-width: 2.5;
+            transition: transform 0.2s ease;
+          }
+          [aria-expanded="true"] .chevron {
+            transform: rotate(180deg);
+          }
+        </style>
+      {{else}}
+        {{#if page.attributes.pdf_url}}
+          <a href="{{page.attributes.pdf_url}}" target="_blank" rel="noopener noreferrer" title="PDF" class="sidebar-link">
+            <span>Download PDF</span>
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M10 14a5 5 0 0 1 7.07 0l3.54 3.54a5 5 0 0 1-7.07 7.07l-3.54-3.54a5 5 0 0 1 0-7.07z"/>
+              <line x1="8" y1="8" x2="16" y2="16"/>
+            </svg>
+          </a>
+        {{/if}}
+      {{/if}}
       
     </div>
   </div>
