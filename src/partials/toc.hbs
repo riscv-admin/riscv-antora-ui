@@ -68,29 +68,52 @@
             {{/each}}
           </ul>
         </div>
-        <script>
-          (function() {
-            const btn = document.getElementById('pdfDropdownButton');
-            const menu = document.getElementById('pdfDropdownMenu');
-            btn.addEventListener('click', function(e) {
-              e.preventDefault();
-              const expanded = btn.getAttribute('aria-expanded') === 'true';
-              btn.setAttribute('aria-expanded', !expanded);
-              menu.hidden = expanded;
-            });
-            document.addEventListener('click', function(e) {
-              if (!btn.contains(e.target) && !menu.contains(e.target)) {
-                btn.setAttribute('aria-expanded', 'false');
-                menu.hidden = true;
-              }
-            });
-          })();
-        </script>
+       <script>
+  (function() {
+    const btn = document.getElementById('pdfDropdownButton');
+    const menu = document.getElementById('pdfDropdownMenu');
+
+    // Toggle dropdown on button click
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !expanded);
+      menu.hidden = expanded;
+      if (!expanded) {
+        menu.querySelector('.dropdown-item')?.focus();
+      }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!btn.contains(e.target) && !menu.contains(e.target)) {
+        btn.setAttribute('aria-expanded', 'false');
+        menu.hidden = true;
+        btn.focus(); // return focus to button
+      }
+    });
+
+    // Close dropdown on Escape key press
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' || e.key === 'Esc') {
+        btn.setAttribute('aria-expanded', 'false');
+        menu.hidden = true;
+        btn.focus();
+      }
+    });
+  })();
+</script>
+
         <style>
+          .dropdown{
+            position: relative;
+            display: inline-block;
+          }
           .dropdown-menu {
             position: absolute;
+            top: 100%;
             left: 0;
-            background: #FDB515;
+            background: #f9f9f9;
             border: 1px solid #000000;
             border-radius: 4px;
             min-width: 180px;
