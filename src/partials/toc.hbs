@@ -55,7 +55,7 @@
       {{/if}}
 
       {{#if page.attributes.multiple_pdfs}}
-        <div class="dropdown">
+        <div class="dropdown-toc">
           <a href="#" id="pdfDropdownButton" aria-haspopup="true" aria-expanded="false" class="sidebar-link">
             <span>Download PDFs</span>
             <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -105,7 +105,7 @@
 </script>
 
         <style>
-          .dropdown{
+          .dropdown-toc{
             position: relative;
             display: inline-block;
           }
@@ -129,12 +129,11 @@
             user-select: none;
           }
           .dropdown-item:hover{
-            background-color: #003262;
+            background-color: #cccccc;
             outline: none;
-            color: white;
           }
           .dropdown-item:focus {
-            background-color: #003262;
+            background-color: #cccccc;
             outline: none;
           }
           .chevron {
