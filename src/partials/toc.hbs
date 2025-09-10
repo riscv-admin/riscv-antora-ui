@@ -77,27 +77,34 @@
           </ul>
         </div>
         <script>
-          (function() { const btn =
-          document.getElementById('pdfDropdownButton'); const menu =
-          document.getElementById('pdfDropdownMenu');
-          btn.addEventListener('click', function(e) { e.preventDefault(); const
-          expanded = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', !expanded); menu.hidden = expanded;
-          }); document.addEventListener('click', function(e) { if
-          (!btn.contains(e.target) && !menu.contains(e.target)) {
-          btn.setAttribute('aria-expanded', 'false'); menu.hidden = true; } });
-          })();
+          function() { const btn = document.getElementById('pdfDropdownButton');
+          const menu = document.getElementById('pdfDropdownMenu');
+          dropdown on button click btn.addEventListener('click', function(e) {
+          e.preventDefault(); const expanded = btn.getAttribute('aria-expanded')
+          === 'true'; btn.setAttribute('aria-expanded', !expanded); menu.hidden
+          = expanded; if (!expanded) {
+          menu.querySelector('.dropdown-item')?.focus(); } }); }
+          when clicking outside document.addEventListener('click', function(e) {
+          if (!btn.contains(e.target) && !menu.contains(e.target)) {
+          btn.setAttribute('aria-expanded', 'false'); menu.hidden = true;
+          btn.focus();}
+          Escape key press document.addEventListener('keydown', function(e) { if
+          (e.key === 'Escape' || e.key === 'Esc') {
+          btn.setAttribute('aria-expanded', 'false'); menu.hidden = true;
+          btn.focus(); } }); })();
         </script>
+
         <style>
-          .dropdown-menu { position: absolute; left: 0; background: #FDB515;
-          border: 1px solid #000000; border-radius: 4px; min-width: 180px;
-          z-index: 1000; list-style-type: none; } .dropdown-item { padding-left:
-          0px; display: block; color: #000000; text-decoration: none;
-          white-space: nowrap; user-select: none; } .dropdown-item:hover{
-          background-color: #003262; outline: none; color: white; }
-          .dropdown-item:focus { background-color: #003262; outline: none; }
-          .chevron { stroke-width: 2.5; transition: transform 0.2s ease; }
-          [aria-expanded="true"] .chevron { transform: rotate(180deg); }
+          .dropdown-toc{ position: relative; display: inline-block; }
+          .dropdown-menu { position: absolute; top: 100%; left: 0; background:
+          #f9f9f9; border: 1px solid #000000; border-radius: 4px; min-width:
+          180px; z-index: 1000; list-style-type: none; } .dropdown-item {
+          padding-left: 0px; display: block; color: #000000; text-decoration:
+          none; white-space: nowrap; user-select: none; } .dropdown-item:hover{
+          background-color: #cccccc; outline: none; } .dropdown-item:focus {
+          background-color: #cccccc; outline: none; } .chevron { stroke-width:
+          2.5; transition: transform 0.2s ease; } [aria-expanded="true"]
+          .chevron { transform: rotate(180deg); }
         </style>
       {{else}}
         {{#if page.attributes.pdf_url}}
